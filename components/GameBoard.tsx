@@ -73,6 +73,53 @@ export default function GameBoard({ board, size, onMove, winner }: GameBoardProp
 }
 
 function getWinningCombination(board: (Player | null)[], size: number): number[] | null {
-  // Implementation remains the same
-  // ...
+  // Check rows
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col <= size - 3; col++) {
+      const index = row * size + col;
+      if (board[index] && 
+          board[index] === board[index + 1] && 
+          board[index] === board[index + 2]) {
+        return [index, index + 1, index + 2];
+      }
+    }
+  }
+
+  // Check columns
+  for (let col = 0; col < size; col++) {
+    for (let row = 0; row <= size - 3; row++) {
+      const index = row * size + col;
+      if (board[index] && 
+          board[index] === board[index + size] && 
+          board[index] === board[index + 2 * size]) {
+        return [index, index + size, index + 2 * size];
+      }
+    }
+  }
+
+  // Check diagonals (top-left to bottom-right)
+  for (let row = 0; row <= size - 3; row++) {
+    for (let col = 0; col <= size - 3; col++) {
+      const index = row * size + col;
+      if (board[index] && 
+          board[index] === board[index + size + 1] && 
+          board[index] === board[index + 2 * (size + 1)]) {
+        return [index, index + size + 1, index + 2 * (size + 1)];
+      }
+    }
+  }
+
+  // Check diagonals (top-right to bottom-left)
+  for (let row = 0; row <= size - 3; row++) {
+    for (let col = 2; col < size; col++) {
+      const index = row * size + col;
+      if (board[index] && 
+          board[index] === board[index + size - 1] && 
+          board[index] === board[index + 2 * (size - 1)]) {
+        return [index, index + size - 1, index + 2 * (size - 1)];
+      }
+    }
+  }
+
+  return null;
 }

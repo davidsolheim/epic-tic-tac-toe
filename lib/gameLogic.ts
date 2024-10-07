@@ -53,4 +53,15 @@ export function checkWinner(board: (Player | null)[], size: number): Player | nu
   return null;
 }
 
+export function getAIMove(board: (Player | null)[], difficulty: Difficulty, size: number): number {
+  // Implement AI logic here based on difficulty
+  // For now, let's just return a random empty cell
+  const emptyCells = board.reduce((acc, cell, index) => {
+    if (cell === null) acc.push(index);
+    return acc;
+  }, [] as number[]);
+
+  return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+}
+
 // ... (rest of the file remains unchanged)
