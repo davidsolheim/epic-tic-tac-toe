@@ -1,6 +1,7 @@
 export type LeaderboardEntry = {
   initials: string;
   wins: number;
+  lastWin: string; // ISO date string
 };
 
 export function getLeaderboard(): LeaderboardEntry[] {
@@ -14,8 +15,9 @@ export function updateLeaderboard(initials: string): void {
 
   if (existingEntry) {
     existingEntry.wins += 1;
+    existingEntry.lastWin = new Date().toISOString();
   } else {
-    leaderboard.push({ initials, wins: 1 });
+    leaderboard.push({ initials, wins: 1, lastWin: new Date().toISOString() });
   }
 
   leaderboard.sort((a, b) => b.wins - a.wins);

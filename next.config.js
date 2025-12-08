@@ -11,6 +11,10 @@ const nextConfig = {
   env: {
     // Add any environment variables you need
   },
+  // Transpile three.js packages
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  // Turbopack config (empty - using default behavior)
+  turbopack: {},
   async headers() {
     return [
       {

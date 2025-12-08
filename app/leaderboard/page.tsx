@@ -47,6 +47,7 @@ export default function Leaderboard() {
               <TableHead className="w-[100px]">Rank</TableHead>
               <TableHead>Initials</TableHead>
               <TableHead className="text-right">Wins</TableHead>
+              <TableHead>Last Win</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -55,6 +56,11 @@ export default function Leaderboard() {
                 <TableCell className="font-medium">{index + 1}</TableCell>
                 <TableCell>{entry.initials}</TableCell>
                 <TableCell className="text-right">{entry.wins}</TableCell>
+                <TableCell>
+                  {entry.lastWin 
+                    ? new Date(entry.lastWin).toLocaleDateString() 
+                    : '-'}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
